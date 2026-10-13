@@ -1,6 +1,7 @@
 # SSE streaming tested via httpx + auth header
 import os
 os.environ["DATABASE_URL"]="sqlite:///./test_stream.db"
+# pyrefly: ignore [missing-import]
 from fastapi.testclient import TestClient
 from app.main import app
 from app.auth import create_token

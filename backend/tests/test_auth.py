@@ -1,5 +1,6 @@
 from app.auth import create_token, require_user, sign_approval, verify_approval
 import pytest
+# pyrefly: ignore [missing-import]
 from fastapi import HTTPException
 
 def test_jwt_roundtrip():
