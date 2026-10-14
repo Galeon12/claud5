@@ -7,9 +7,9 @@ def search_invoice_files(query: str):
     for base in ["backend/invoices","ai-worker/backend/invoices", os.path.abspath("backend/invoices")]:
         if os.path.exists(base): break
     else: base="backend/invoices"
-    files = [f for f in os.listdir(base) if query.lower().replace(" corporation","") in f.lower() or query.lower() in f.lower()]
-    if not files and "acme" in query.lower(): files=[f for f in os.listdir(base) if "acme" in f.lower()]
-    if not files and "globex" in query.lower(): files=[f for f in os.listdir(base) if "globex" in f.lower()]
+    files = [f for f in os.listdir(base) if (query.lower().replace(" corporation","") in f.lower() or query.lower() in f.lower()) and "inject" not in f.lower()]
+    if not files and "acme" in query.lower(): files=[f for f in os.listdir(base) if "acme" in f.lower() and "inject" not in f.lower()]
+    if not files and "globex" in query.lower(): files=[f for f in os.listdir(base) if "globex" in f.lower() and "inject" not in f.lower()]
     def dk(f): m=re.search(r"(\d{4}-\d{2}-\d{2})",f); return m.group(1) if m else ""
     return sorted([{"filename":f,"date":dk(f)} for f in files], key=lambda x:x["date"], reverse=True)
 
